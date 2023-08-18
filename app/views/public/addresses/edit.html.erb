@@ -6,8 +6,8 @@
 
     <h3>配送先編集</h3>
 
-    <%= form_with model: @addresse, url: addresses_path, method: :patch do |f|  %>
-      <%= render "public/shared/error_messages", resource: @addresse %>
+    <%= form_with model: @address, url: address_path(@address), method: :patch do |f|  %>
+      <%= render "public/shared/error_messages", resource: @address %>
 
       <table>
         <tr>

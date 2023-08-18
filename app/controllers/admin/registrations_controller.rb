@@ -12,6 +12,7 @@ class Admin::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
 
+
   # GET /resource/sign_up
   # def new
   #   super

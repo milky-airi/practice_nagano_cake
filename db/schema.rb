@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_18_084706) do
+ActiveRecord::Schema.define(version: 2023_08_18_125939) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,13 +41,12 @@ ActiveRecord::Schema.define(version: 2023_08_18_084706) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "member_id_id", null: false
     t.string "post_code", null: false
     t.text "address", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["member_id_id"], name: "index_addresses_on_member_id_id"
+    t.integer "member_id", null: false
   end
 
   create_table "admins", force: :cascade do |t|
@@ -63,13 +62,11 @@ ActiveRecord::Schema.define(version: 2023_08_18_084706) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "member_id_id", null: false
-    t.integer "item_id_id", null: false
+    t.integer "member_id", null: false
+    t.integer "item_id", null: false
     t.integer "quantity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id_id"], name: "index_cart_items_on_item_id_id"
-    t.index ["member_id_id"], name: "index_cart_items_on_member_id_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -136,9 +133,6 @@ ActiveRecord::Schema.define(version: 2023_08_18_084706) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "addresses", "member_ids"
-  add_foreign_key "cart_items", "item_ids"
-  add_foreign_key "cart_items", "member_ids"
   add_foreign_key "order_details", "item_ids"
   add_foreign_key "order_details", "order_ids"
   add_foreign_key "orders", "member_ids"
