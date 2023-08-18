@@ -2,38 +2,35 @@
   <div class="row">
     <%= render 'admin/shared/header.html.erb' %>
 
-  <div class="col-md-3 col-md-offset-1">
-    <%= render 'public/items/genre_search.html.erb' %>
-  </div>
-
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-5 col-md-offset-2">
+    <h3>商品詳細</h3>
     <div class="item-details">
-      <p>[画像]</p>
+      <%= image_tag @item.image, size: "300x200" %>
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-5">
     <div class="item-details">
       <table>
         <tr>
           <td>商品名</td>
-          <td></td>
+          <td><%= @item.name %></td>
         </tr>
         <tr>
           <td>商品説明</td>
-          <td></td>
+          <td><%= @item.detail %></td>
         </tr>
         <tr>
           <td>ジャンル</td>
-          <td></td>
+          <td><%= @item.genre.name %></td>
         </tr>
         <tr>
           <td>税込価格(税抜価格)</td>
-          <td></td>
+          <td><%= @item.price %>(<%= (@item.price/1.1).floor(0) %>)円</td>
         </tr>
         <tr>
           <td>販売ステータス</td>
-          <td></td>
+          <td><%= @item.is_active %></td>
         </tr>
       </table>
 
