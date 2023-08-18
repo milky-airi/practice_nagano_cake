@@ -1,0 +1,29 @@
+<div class="container p-3">
+  <div class="row">
+    <%= render 'admin/shared/header.html.erb' %>
+    <div class="col-md-12">
+      <h3>ジャンル一覧・追加</h3>
+
+      <%= form_with model: Genre.new, url: admin_genres_path, method: :post do |f| %>
+        <table>
+          <tr>
+            <th>ジャンル名</th>
+            <th><%= f.text_field :name %></th>
+            <th><%= f.submit "新規登録", class: "btn btn-success" %></th>
+          </tr>
+        </table>
+      <% end %>
+
+      <table class="table">
+        <tr>
+          <th>ジャンル</th>
+          <th></th>
+        </tr>
+      </table>
+
+    </div>
+    <%= render 'admin/shared/footer.html.erb' %>
+  </div>
+</div>
+
+

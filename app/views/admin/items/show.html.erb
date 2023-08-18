@@ -1,0 +1,49 @@
+<div class="container p-3">
+  <div class="row">
+    <%= render 'admin/shared/header.html.erb' %>
+
+  <div class="col-md-3 col-md-offset-1">
+    <%= render 'public/items/genre_search.html.erb' %>
+  </div>
+
+  <div class="col-md-3 col-md-offset-1">
+    <div class="item-details">
+      <p>[画像]</p>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="item-details">
+      <table>
+        <tr>
+          <td>商品名</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>税込価格(税抜価格)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td></td>
+        </tr>
+      </table>
+
+      <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success" %>
+
+    </div>
+  </div>
+
+    <%= render 'admin/shared/footer.html.erb' %>
+  </div>
+</div>
+
+
