@@ -12,7 +12,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(member_id: current_member.id)
   end
 
   def update
@@ -20,7 +20,7 @@ class Public::CartItemsController < ApplicationController
     if @cart_item.update(cart_item_params)
       redirect_to cart_items_path
     else
-      @cart_items = CartItem.all
+      @cart_items = CartItem.where(member_id: current_member.id)
       render :index
     end
   end
@@ -32,7 +32,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(member_id: current_member.id)
     @cart_items.each do |cart_item|
       cart_item.destroy
     end
