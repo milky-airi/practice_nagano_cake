@@ -13,33 +13,37 @@ Rails.application.routes.draw do
   get '/about' => 'public/homes#about'
 
   # public側
-  resources :items, only: [:index, :show]
-  get '/members/mypage' => "public/members#show"
-  get '/members/information/edit' => "public/members#edit"
-  patch '/members/information' => "public/members#update"
-  get '/members/confirm_quit' => "public/members#confirm_quit"
-  patch '/members/quit' => 'public/members#quit'
-  resources :cart_items, only: [:index, :update, :destroy, :create] do
-    collection do
-      delete 'destroy_all'
+
+  scope module: :public do
+    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show]
+    get '/members/mypage' => "members#show"
+    get '/members/information/edit' => "members#edit"
+    patch '/members/information' => "members#update"
+    get '/members/confirm_quit' => "members#confirm_quit"
+    patch '/members/quit' => 'members#quit'
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+      collection do
+        delete 'destroy_all'
+      end
     end
-  end
-  resources :orders, only: [:new, :create, :index, :show] do
-    collection do
-      post 'confirm'
-      get 'complete'
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        get 'confirm'
+        get 'complete'
+      end
     end
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
   # admin側
 
   namespace :admin do
-    root 'admin/homes#top'
+    root 'homes#top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:show, :update, :index]
     resources :order_details, only: [:update]
   end
 

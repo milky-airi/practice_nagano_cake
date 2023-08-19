@@ -1,3 +1,3 @@
 class Addresse < ApplicationRecord
-  belongs_to :member_id
+  belongs_to :member
 end

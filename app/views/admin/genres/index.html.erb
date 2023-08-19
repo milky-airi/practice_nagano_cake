@@ -1,0 +1,36 @@
+<div class="container p-3">
+  <div class="row">
+    <%= render 'admin/shared/header.html.erb' %>
+
+    <div class="col-md-8 col-md-offset-6">
+      <div class="create_genre mb-3">
+        <h3 class="mb-3">ジャンル一覧・追加</h3>
+        <%= form_with model: Genre.new, url: admin_genres_path, method: :post do |f| %>
+          <table>
+            <tr>
+              <th>ジャンル名</th>
+              <th><%= f.text_field :name, placeholder: "ジャンル名" %></th>
+              <th><%= f.submit "新規登録", class: "btn btn-success" %></th>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+
+      <table class="table">
+        <tr>
+          <th>ジャンル</th>
+          <th></th>
+        </tr>
+        <% @genres.each do |genre| %>
+        <tr>
+          <td><%= genre.name %></td>
+          <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <%= render 'admin/shared/footer.html.erb' %>
+  </div>
+</div>
+
+
