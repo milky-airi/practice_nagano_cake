@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-
+  before_action :authenticate_admin!, only: [:create, :index, :show, :edit, :update]
 
   def create
     @item = Item.new(item_params)

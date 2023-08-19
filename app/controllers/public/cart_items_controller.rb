@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+  before_action :authenticate_member!, only: [:create, :index, :update, :destroy, :destroy_all]
 
   def create
     @cart_item = CartItem.new(cart_item_params)

@@ -1,4 +1,6 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_member!, only: [:index, :show]
+
   def index
     @items = Item.all
     @genres = Genre.all

@@ -11,6 +11,18 @@
           <th>注文個数</th>
           <th>注文ステータス</th>
         </tr>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.member.family_name + order.member.first_name %></td>
+              <%= sum_quantity = 0 %>
+            <% OrderDetail.where(order_id: order.id).each do |order_detail| %>
+              <% sum_quantity += order_detail.quantity%>
+            <% end %>
+            <td><%= sum_quantity %></td>
+            <td><%= order.status %></td>
+          </tr>
+        <% end %>
       </table>
 
     </div>

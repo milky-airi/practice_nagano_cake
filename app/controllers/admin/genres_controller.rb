@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :index, :edit, :update]
 
   def create
     @genre = Genre.new(genre_params)

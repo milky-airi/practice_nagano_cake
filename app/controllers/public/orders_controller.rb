@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show]
+
   def new
   end
 
@@ -79,7 +81,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_details= OrderDetail.where(order_id: @order.id)
   end
 
 end

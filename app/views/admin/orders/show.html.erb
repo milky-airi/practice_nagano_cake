@@ -2,28 +2,33 @@
   <div class="row">
     <%= render 'admin/shared/header.html.erb' %>
     <div class="col-md-12">
-      <h3>注文履歴詳細</h3>
+      <h3 class="mb-5">注文履歴詳細</h3>
 
-      <table>
+      <table class="mb-5">
         <tr>
           <th>購入者</th>
-          <td></td>
+          <td><%= @order.member.family_name + @order.member.first_name %></td>
         </tr>
         <tr>
           <th>注文日</th>
-          <td></td>
+          <td><%= @order.created_at %></td>
         </tr>
         <tr>
           <th>配送先</th>
-          <td></td>
+          <td><%= @order.post_code + "　" + @order.address +  "　" + @order.name %></td>
         </tr>
         <tr>
           <th>支払方法</th>
-          <td></td>
+          <td><%= @order.pay_method %></td>
         </tr>
         <tr>
+          <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
           <th>注文ステータス</th>
-          <td></td>
+          <td>
+            <%= f.select :status, [["入金待ち",0],["入金確認",1],["製作中",2],["発送準備中",3],["発送済み",4]] %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+          </td>
+          <% end %>
         </tr>
       </table>
 
@@ -36,18 +41,32 @@
           <th>制作ステータス</th>
           <th></th>
         </tr>
+        <% @order_details.each do |order_detail| %>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f|  %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.item.price %></td>
+          <td><%= order_detail.quantity %></td>
+          <td><%= order_detail.item.price * order_detail.quantity %></td>
+          <td>
+            <%= f.select :making_status, [["着手不可",0], ["製作待ち",1], ["製作中",2], ["製作完了",3]] %>
+          </td>
+          <td><%= f.submit "更新", class: "btn btn-success" %></td>
+        </tr>
+        <% end %>
+        <% end %>
       </table>
 
       <table>
         <tr>
           <th>商品合計</th>
-          <td></td>
+          <td><%= @order.total_price - @order.shipping_fee %></td>
         </tr>
           <th>送料</th>
-          <td></td>
+          <td><%= @order.shipping_fee %></td>
         </tr>
           <th>請求額合計</th>
-          <td></td>
+          <td><%= @order.total_price  %></td>
         </tr>
       </table>
 

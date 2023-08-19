@@ -1,4 +1,5 @@
 class Admin::MembersController < ApplicationController
+  before_action :authenticate_admin!, only: [:show, :edit, :update, :index]
 
   def show
     @member = Member.find(params[:id])

@@ -13,8 +13,7 @@
         <td>ステータス</td>
         <td>注文詳細</td>
       </tr>
-    </table>
-    <% @orders.each do |order| %>
+      <% @orders.each do |order| %>
     <tr>
       <td><%= order.created_at %></td>
       <td><%= order.address %></td>
@@ -24,6 +23,8 @@
       <td><%= link_to "表示する", order_path(order.id), class: "btn btn-info" %></td>
     </tr>
     <% end %>
+    </table>
+
   </div>
 
     <%= render 'public/shared/footer.html.erb' %>

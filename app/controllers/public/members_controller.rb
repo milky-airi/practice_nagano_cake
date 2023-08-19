@@ -1,4 +1,6 @@
 class Public::MembersController < ApplicationController
+  before_action :authenticate_member!, only: [:show, :edit, :update, :quit]
+
   def show
     @member = current_member
   end
