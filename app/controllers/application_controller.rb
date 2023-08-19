@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_orders_path
     when Member
-      members_mypage_path
+      root_path
     end
   end
 

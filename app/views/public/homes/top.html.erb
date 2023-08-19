@@ -21,7 +21,11 @@
 
         <% @lastest_items.each do |item| %>
         <div class="new-item mr-2">
-          <p><%= image_tag item.image, size: "200x150" %></p>
+          <p>
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.image, size: "200x150" %>
+            <% end %>
+          </p>
           <p><%= item.name %></p>
           <p><%= item.price %>円</p>
         </div>

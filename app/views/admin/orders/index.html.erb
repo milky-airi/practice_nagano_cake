@@ -13,14 +13,18 @@
         </tr>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= order.created_at %></td>
+            <td>
+              <%= link_to admin_order_path(order.id) do %>
+                <%= order.created_at %>
+              <% end %>
+            </td>
             <td><%= order.member.family_name + order.member.first_name %></td>
               <%= sum_quantity = 0 %>
             <% OrderDetail.where(order_id: order.id).each do |order_detail| %>
               <% sum_quantity += order_detail.quantity%>
             <% end %>
             <td><%= sum_quantity %></td>
-            <td><%= order.status %></td>
+            <td><%= order.status_i18n %></td>
           </tr>
         <% end %>
       </table>
