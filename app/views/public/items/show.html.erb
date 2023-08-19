@@ -18,14 +18,19 @@
       <p><%= @item.detail %></p>
       <p>¥<%= @item.price %>(税込)</p>
 
-      <%= form_with model: CartItem.new, url: cart_items_path, method: :post do |f| %>
+      <% if @item.is_active == true %>
+        <%= form_with model: CartItem.new, url: cart_items_path, method: :post do |f| %>
 
-        <%= f.select :quantity, [[1,1], [2,2], [3,3], [4,4], [5,5]], include_blank: "個数選択" %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.hidden_field :member_id, :value =>  @member.id %>
+           <!--f.select :quantity, [[1,1], [2,2], [3,3], [4,4], [5,5]], include_blank: "個数選択" -->
+          <%= f.select :quantity, 1..10, prompt: "個数選択" %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.hidden_field :member_id, :value =>  @member.id %>
         <%= f.submit "カートに入れる" %>
+        <% end %>
 
-      <% end %>
+        <% else %>
+          <P>販売停止中</P>
+        <% end %>
 
     </div>
   </div>

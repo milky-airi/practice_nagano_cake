@@ -19,13 +19,13 @@
         </tr>
         <tr>
           <th>支払方法</th>
-          <td><%= @order.pay_method %></td>
+          <td><%= @order.pay_method_i18n %></td>
         </tr>
         <tr>
           <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
           <th>注文ステータス</th>
           <td>
-            <%= f.select :status, [["入金待ち",0],["入金確認",1],["製作中",2],["発送準備中",3],["発送済み",4]] %>
+            <%= f.select :status, [["入金待ち","waiting"],["入金確認","confirm"],["製作中","making"],["発送準備中","preparing"],["発送済み","shipped"]] %>
             <%= f.submit "更新", class: "btn btn-success" %>
           </td>
           <% end %>
@@ -49,7 +49,7 @@
           <td><%= order_detail.quantity %></td>
           <td><%= order_detail.item.price * order_detail.quantity %></td>
           <td>
-            <%= f.select :making_status, [["着手不可",0], ["製作待ち",1], ["製作中",2], ["製作完了",3]] %>
+            <%= f.select :making_status, [["着手不可","not_available"], ["製作待ち","waiting_for_making"], ["製作中","making"], ["製作完了","made"]] %>
           </td>
           <td><%= f.submit "更新", class: "btn btn-success" %></td>
         </tr>

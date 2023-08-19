@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
   before_action :authenticate_member!, only: [:show]
 
   def index
-    @items = Item.where(is_active: true)
+    @items = Item.all
     @genres = Genre.all
   end
 

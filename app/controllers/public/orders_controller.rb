@@ -76,7 +76,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(member_id: current_member.id)
+    @orders = Order.where(member_id: current_member.id).order(created_at: :desc)
   end
 
   def show

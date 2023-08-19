@@ -11,7 +11,7 @@
             <li class="nav-item"><%= link_to "会員一覧", admin_members_path, class: "btn btn-outline-secondary mr-3" %></li>
             <li class="nav-item"><%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-secondary mr-3" %></li>
             <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary mr-3" %></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
           </ul>
         </nav>
 
@@ -29,7 +29,7 @@
             <li class="nav-item"><%= link_to "About", about_path, class: "btn btn-outline-secondary mr-3" %></li>
             <li class="nav-item"><%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mr-3" %></li>
             <li class="nav-item"><%= link_to "新規登録", new_member_registration_path, class: "btn btn-outline-secondary mr-3" %></li>
-            <li class="nav-item"><%= link_to "ログイン", new_member_session_path, class: "btn btn-outline-secondary mr-3" %></li>
+            <li class="nav-item"><%= link_to "ログイン", new_admin_session_path, class: "btn btn-outline-secondary mr-3" %></li>
           </ul>
         </nav>
 
