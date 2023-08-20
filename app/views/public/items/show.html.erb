@@ -6,17 +6,21 @@
     <%= render 'public/items/genre_search.html.erb' %>
   </div>
 
-  <div class="col-md-4 col-md-offset-1">
+  <div class="col-md-4 col-md-offset-1 mt-3">
     <div class="item-details">
       <%= image_tag @item.image, size: "300x200" %>
     </div>
   </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 mt-3">
     <div class="item-details">
       <h3><%= @item.name %></h3>
       <p><%= @item.detail %></p>
-      <p>¥<%= @item.price %>(税込)</p>
+
+      <div class="d-flex">
+        <h4 class="mr-1">¥<%= @item.price.to_s(:delimited) %></h4>
+        <p>(税込)</p>
+      </div>
 
       <% if member_signed_in? %>
 
@@ -24,10 +28,10 @@
         <%= form_with model: CartItem.new, url: cart_items_path, method: :post do |f| %>
 
            <!--f.select :quantity, [[1,1], [2,2], [3,3], [4,4], [5,5]], include_blank: "個数選択" -->
-          <%= f.select :quantity, 1..10, prompt: "個数選択" %>
+          <%= f.select :quantity, 1..10, {prompt: "個数選択"}, class: "btn btn-outline-secondary text-dark" %>
           <%= f.hidden_field :item_id, :value => @item.id %>
           <%= f.hidden_field :member_id, :value =>  @member.id %>
-        <%= f.submit "カートに入れる" %>
+        <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
         <% end %>
 
         <% else %>
@@ -35,9 +39,7 @@
         <% end %>
 
       <% else %>
-
-        <%= link_to "カートに入れる", new_member_session_path, class: "btn btn-success" %>
-
+        <%= link_to "カートに入れる", new_member_session_path, class: "btn btn-success ml-3" %>
       <% end %>
 
     </div>

@@ -1,29 +1,43 @@
 <div class="container p-3">
   <div class="row">
     <%= render 'public/shared/header.html.erb' %>
-      <div class="col-md-12">
 
-        <h2>ログイン</h2>
-        <p>会員の方はこちらからログイン</p>
+      <div class="col-md-12 mb-3">
+        <h3>ログイン</h3>
+        <p class="ml-3">会員の方はこちらからログイン</p>
+      </div>
 
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field">
-            <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
+      <div class="col-md-9 offset-md-3 mb-5">
+        <table>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <tr>
+              <!--<div class="field d-flex mb-3">-->
+              <td><%= f.label :メールアドレス %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email@example.com", class: "ml-3 w-100" %></td>
+              <!--</div>-->
+            </tr>
 
-          <div class="field">
-            <%= f.label :パスワード %><br />
-            <%= f.password_field :password, autocomplete: "current-password" %>
-          </div>
+            <tr>
+              <!--<div class="field mb-3 d-flex">-->
+                <td><%= f.label :パスワード %></td>
+                <td><%= f.password_field :password, autocomplete: "current-password", class: "ml-3 w-100 pr-5 pl-5" %></td>
+              <!--</div>-->
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <!--<div class="actions mb-5 text-center">-->
+                  <%= f.submit "ログイン", class: "btn btn-info ml-3 mt-3" %>
+                <!--</div>-->
+              <% end %>
+              </td>
+            </tr>
+          </table>
+      </div>
 
-          <div class="actions">
-            <%= f.submit "ログイン", class: "btn btn-info" %>
-          </div>
-        <% end %>
-
-        <p>会員登録がお済みでない方</p>
-        <p><%= link_to "こちら", new_member_registration_path %>　から、新規登録を行なってください</p>
+    <div class="col-md-12">
+        <h3>会員登録がお済みでない方</h3>
+        <p class="ml-3"><%= link_to "こちら", new_member_registration_path %>　から、新規登録を行なってください</p>
 
     </div>
     <%= render 'public/shared/footer.html.erb' %>

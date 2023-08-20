@@ -3,6 +3,7 @@
     <%= render 'admin/shared/header.html.erb' %>
 
   <div class="col-md-5 col-md-offset-2">
+    <%= flash[:notice] %>
     <h3>商品詳細</h3>
     <div class="item-details">
       <%= image_tag @item.image, size: "300x200" %>
