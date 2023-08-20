@@ -18,6 +18,8 @@
       <p><%= @item.detail %></p>
       <p>¥<%= @item.price %>(税込)</p>
 
+      <% if member_signed_in? %>
+
       <% if @item.is_active == true %>
         <%= form_with model: CartItem.new, url: cart_items_path, method: :post do |f| %>
 
@@ -31,6 +33,12 @@
         <% else %>
           <P>販売停止中</P>
         <% end %>
+
+      <% else %>
+
+        <%= link_to "カートに入れる", new_member_session_path, class: "btn btn-success" %>
+
+      <% end %>
 
     </div>
   </div>
