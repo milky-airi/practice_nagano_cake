@@ -27,7 +27,7 @@
             <% end %>
           </p>
           <p><%= item.name %></p>
-          <p><%= item.price %>円</p>
+          <p><%= item.price.to_s(:delimited) %>円</p>
         </div>
         <% end %>
       </div>
