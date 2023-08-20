@@ -54,7 +54,7 @@ class Public::OrdersController < ApplicationController
 
       @order.pay_method = params[:order][:pay_method]
 
-      if @order.pay_method == 0
+      if @order.pay_method == "credit_card"
         @order.status = 1
       else
         @order.status = 0
@@ -79,8 +79,14 @@ class Public::OrdersController < ApplicationController
     end
 
     if @order.save
-      @cart_items.each do |cart_item|
-        OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+      if @order.status == 0
+        @cart_items.each do |cart_item|
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+        end
+      else
+        @cart_items.each do |cart_item|
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
+        end
       end
       @cart_items.destroy_all
       redirect_to complete_orders_path
