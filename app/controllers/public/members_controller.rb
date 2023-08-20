@@ -12,9 +12,11 @@ class Public::MembersController < ApplicationController
   def update
     @member = current_member
     if @member.update(member_params)
+      flash[:notice] = "会員情報を更新しました"
       redirect_to members_mypage_path
     else
       @member = current_member
+      flash[:notice] = "会員情報の変更に失敗しました"
       render :edit
     end
   end
@@ -24,6 +26,9 @@ class Public::MembersController < ApplicationController
     @member.update(is_deleted: true)
     reset_session
     redirect_to root_path
+  end
+
+  def confirm_quit
   end
 
   private
