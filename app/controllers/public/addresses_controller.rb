@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @address = Addresse.new
-    @addresses = Addresse.where(member_id: current_member.id)
+    @addresses = Addresse.where(member_id: current_member.id).page(params[:page]).per(10)
   end
 
   def create

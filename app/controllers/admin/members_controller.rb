@@ -23,7 +23,7 @@ class Admin::MembersController < ApplicationController
 
   def index
     # @members = Member.all
-    @members = Member.page(params[:page])
+    @members = Member.all.page(params[:page]).per(10)
   end
 
   private
