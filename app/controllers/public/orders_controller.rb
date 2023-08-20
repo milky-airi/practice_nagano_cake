@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show]
+  before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show, :complete]
 
   def new
   end
@@ -10,6 +10,7 @@ class Public::OrdersController < ApplicationController
 
     @selected_pay_method = params[:order][:pay_method]
 
+    # 商品の合計額
     ary = []
     @cart_items.each do |cart_item|
       ary << cart_item.item.price*cart_item.quantity
@@ -36,31 +37,30 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     end
-
   end
 
   def create
-      @order = Order.new
-      @order.member_id = current_member.id
-      @order.shipping_fee = 800
+    @order = Order.new
+    @order.member_id = current_member.id
+    @order.shipping_fee = 800
 
-      @cart_items = CartItem.where(member_id: current_member.id)
-      ary = []
-      @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.quantity
-      end
-      @cart_items_price = ary.sum
-      @order.total_price = @order.shipping_fee + @cart_items_price
+    @cart_items = CartItem.where(member_id: current_member.id)
+    ary = []
+    @cart_items.each do |cart_item|
+      ary << cart_item.item.price*cart_item.quantity
+    end
+    @cart_items_price = ary.sum
+    @order.total_price = @order.shipping_fee + @cart_items_price
 
-      @order.pay_method = params[:order][:pay_method]
+    @order.pay_method = params[:order][:pay_method]
 
-      if @order.pay_method == "credit_card"
-        @order.status = 1
-      else
-        @order.status = 0
-      end
+    if @order.pay_method == "credit_card"
+      @order.status = 1
+    else
+      @order.status = 0
+    end
 
-      address_type = params[:order][:address_type]
+    address_type = params[:order][:address_type]
     case address_type
     when "member_address"
       @order.post_code = current_member.post_code
@@ -93,8 +93,8 @@ class Public::OrdersController < ApplicationController
     else
       render :items
     end
-
   end
+
 
   def index
     @orders = Order.where(member_id: current_member.id).order(created_at: :desc).page(params[:page]).per(10)
@@ -103,6 +103,9 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details= OrderDetail.where(order_id: @order.id)
+  end
+
+  def complete
   end
 
 end
