@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     get '/search' => 'searches#search'
+    get '/genre/search' => 'searches#genre_search'
     resources :items, only: [:index, :show]
     resources :items, only: [:index, :show]
     get '/members/mypage' => "members#show"
