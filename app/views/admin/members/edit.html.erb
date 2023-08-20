@@ -3,11 +3,11 @@
     <%= render 'admin/shared/header.html.erb' %>
     <div class="col-md-12">
 
-      <h3><%= @member.family_name + @member.first_name %>さんの会員情報編集</h3>
+      <h3 class="mb-3"><%= @member.family_name + @member.first_name %>さんの会員情報編集</h3>
 
       <%= form_with model: @member, url: admin_member_path, method: :patch do |f| %>
 
-      <table>
+      <table class="mb-3">
         <tr>
           <td>会員ID</td>
           <td></td>

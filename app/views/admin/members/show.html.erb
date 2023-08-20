@@ -3,9 +3,9 @@
     <%= render 'admin/shared/header.html.erb' %>
     <div class="col-md-12">
 
-      <h3><%= @member.family_name + @member.first_name %>さんの会員詳細</h3>
+      <h3 class="mb-3"><%= @member.family_name + @member.first_name %>さんの会員詳細</h3>
 
-      <table>
+      <table class="mb-3">
         <tr>
           <td>会員ID</td>
           <td><%= @member.id %></td>
@@ -38,9 +38,9 @@
           <td>会員ステータス</td>
           <td>
             <% if @member.is_deleted == true %>
-              退会済
+              <p class="text-secondary"><strong>退会</strong></p>
             <% else %>
-              有効
+              <p class="text-success"><strong>有効</strong></p>
             <% end %>
           </td>
         </tr>

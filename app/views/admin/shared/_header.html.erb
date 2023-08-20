@@ -16,8 +16,8 @@
         </nav>
 
        <%= form_with url: search_path, method: :get do |f|  %>
-        <%= f.text_field :word, placeholder: "Search" %>
-        <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+        <%= f.text_field :word, placeholder: "Search", class: "p-1" %>
+        <%= button_tag type: "submit", class: "btn border-0" do %>
             <i class="fas fa-search"></i>
         <% end %>
       <% end %>
@@ -35,8 +35,8 @@
         </nav>
 
       <%= form_with url: search_path, method: :get do |f|  %>
-        <%= f.text_field :word, placeholder: "Search" %>
-        <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+        <%= f.text_field :word, placeholder: "Search", class: "p-1" %>
+        <%= button_tag type: "submit", class: "btn border-0" do %>
             <i class="fas fa-search"></i>
         <% end %>
       <% end %>

@@ -1,29 +1,45 @@
 <div class="container p-3">
   <div class="row">
     <%= render 'admin/shared/header.html.erb' %>
+
     <div class="col-md-12">
-
-      <h2>管理者ログイン</h2>
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-      <table>
-        <tr>
-          <td><%= f.label :メールアドレス %></td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :パスワード %></td>
-          <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-        </tr>
-      </table>
-
-        <div class="actions">
-          <%= f.submit "ログイン", class: "btn btn-info" %>
-        </div>
-      <% end %>
-
+      <h2 class="mb-4">管理者ログイン</h2>
     </div>
+
+    <div class="col-md-2 offset-md-2 mb-1">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.label :メールアドレス %>
+    </div>
+
+    <div class="col-md-6 offset-md-1">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email@example.com" %>
+    </div>
+
+    <div class="offset-md-1">
+    </div>
+
+    <div class="col-md-2 offset-md-2 mb-3">
+      <%= f.label :パスワード %>
+    </div>
+
+    <div class="col-md-6 offset-md-1">
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="offset-md-1">
+    </div>
+
+    <div class="col-md-6 offset-md-5">
+      <div class="actions">
+        <%= f.submit "ログイン", class: "btn btn-info" %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="offset-md-1">
+    </div>
+
+    <!--</div>-->
     <%= render 'admin/shared/footer.html.erb' %>
   </div>
 </div>

@@ -3,12 +3,16 @@
     <%= render 'admin/shared/header.html.erb' %>
 
     <div class="col-md-12">
-      <h3>商品一覧</h3>
+      <h3 class="mb-3">商品一覧</h3>
 
-      <%= link_to "+", new_admin_item_path %>
+      <div class="mb-3 text-right">
+        <%= link_to new_admin_item_path, class: "text-dark border border-secondary rounded-circle px-3 py-2" do %>
+          <i class="fas fa-plus"></i>
+        <% end %>
+      </div>
 
       <table class="table">
-        <tr>
+        <tr class="table-secondary">
           <th>商品ID</th>
           <th>商品名</th>
           <th>税抜価格</th>
@@ -19,12 +23,19 @@
           <tr>
             <td><%= item.id %></td>
             <td><%= link_to item.name, admin_item_path(item.id) %></td>
-            <td><%= item.price %></td>
+            <td><%= item.price.to_s(:delimited) %></td>
             <td><%= item.genre.name %></td>
-            <td><%= item.is_active %></td>
+            <td>
+              <% if item.is_active == true %>
+                <p class="text-success"><strong>販売中</strong></p>
+              <% else %>
+                <p class="text-secondary"><strong>販売停止中</strong></p>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>
+      <%= paginate @items, theme: 'bootstrap-5' %>
     </div>
     <%= render 'admin/shared/footer.html.erb' %>
   </div>

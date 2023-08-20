@@ -2,22 +2,26 @@
   <div class="row">
     <%= render 'admin/shared/header.html.erb' %>
 
-    <div class="col-md-8 col-md-offset-6">
+
+    <div class="col-md-12">
       <div class="create_genre mb-3">
         <h3 class="mb-3">ジャンル一覧・追加</h3>
-        <%= form_with model: Genre.new, url: admin_genres_path, method: :post do |f| %>
-          <table>
-            <tr>
-              <th>ジャンル名</th>
-              <th><%= f.text_field :name, placeholder: "ジャンル名" %></th>
-              <th><%= f.submit "新規登録", class: "btn btn-success" %></th>
-            </tr>
-          </table>
-        <% end %>
-      </div>
 
+
+        <%= form_with model: Genre.new, url: admin_genres_path, method: :post do |f| %>
+        <div class="d-flex">
+          <p class="mr-3">ジャンル名</p>
+          <%= f.text_field :name, placeholder: "ジャンル名", class:"mr-3" %>
+          <%= f.submit "新規登録", class: "btn btn-success" %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-6">
       <table class="table">
-        <tr>
+        <tr class="table-secondary">
           <th>ジャンル</th>
           <th></th>
         </tr>
@@ -29,6 +33,8 @@
         <% end %>
       </table>
     </div>
+    <div class="offset-md-6"></div>
+
     <%= render 'admin/shared/footer.html.erb' %>
   </div>
 </div>

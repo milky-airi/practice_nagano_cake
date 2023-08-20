@@ -2,17 +2,15 @@
   <div class="row">
     <%= render 'admin/shared/header.html.erb' %>
     <div class="col-md-12">
-      <h3>ジャンル編集</h3>
+      <h3 class="mb-3">ジャンル編集</h3>
 
-      <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
-        <table>
-          <tr>
-            <th>ジャンル名</th>
-            <th><%= f.text_field :name %></th>
-            <th><%= f.submit "変更を保存", class: "btn btn-success" %></th>
-          </tr>
-        </table>
-      <% end %>
+        <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+        <div class="d-flex">
+          <p class="mr-3">ジャンル名</p>
+          <%= f.text_field :name, class:"mr-3" %>
+          <%= f.submit "変更を保存", class: "btn btn-success" %>
+          <% end %>
+        </div>
 
     </div>
     <%= render 'admin/shared/footer.html.erb' %>

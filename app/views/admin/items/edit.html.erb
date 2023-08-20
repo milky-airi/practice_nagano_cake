@@ -3,11 +3,11 @@
     <%= render 'admin/shared/header.html.erb' %>
     <div class="col-md-12">
 
-      <h3>商品編集</h3>
+      <h3 class="mb-3">商品編集</h3>
 
       <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
 
-        <table>
+        <table class="mb-3">
           <tr>
             <td>商品画像</td>
             <td><%= f.file_field :image, accept: "image/*" %></td>

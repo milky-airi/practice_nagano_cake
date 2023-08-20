@@ -2,10 +2,10 @@
   <div class="row">
     <%= render 'admin/shared/header.html.erb' %>
     <div class="col-md-12">
-      <h3>注文履歴一覧</h3>
+      <h3 class="mb-3">注文履歴一覧</h3>
 
-      <table class="table">
-        <tr>
+      <table class="table mb-3">
+        <tr class="table-secondary">
           <th>購入日時</th>
           <th>購入者</th>
           <th>注文個数</th>
@@ -14,12 +14,13 @@
         <% @orders.each do |order| %>
           <tr>
             <td>
-              <%= link_to admin_order_path(order.id) do %>
+              <%= link_to admin_order_path(order.id), class:"text-dark" do %>
                 <%= order.created_at.strftime('%Y/%m/%d') %>
+                <%= order.created_at.strftime('%T') %>
               <% end %>
             </td>
             <td><%= order.member.family_name + order.member.first_name %></td>
-              <%= sum_quantity = 0 %>
+              <% sum_quantity = 0 %>
             <% OrderDetail.where(order_id: order.id).each do |order_detail| %>
               <% sum_quantity += order_detail.quantity%>
             <% end %>
