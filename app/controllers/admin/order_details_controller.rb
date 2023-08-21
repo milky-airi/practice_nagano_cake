@@ -11,7 +11,7 @@ class Admin::OrderDetailsController < ApplicationController
       @order = @order_detail.order
       if @order.order_details.any? { |order_detail| order_detail.making_status == "making" }
         @order.update(status: "making")
-       elsif @order.order_details.all? { |order_detail| order_detail.making_status == "made" }
+      elsif @order.order_details.all? { |order_detail| order_detail.making_status == "made" }
         @order.update(status: "preparing")
       end
 

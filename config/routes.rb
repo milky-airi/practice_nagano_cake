@@ -45,7 +45,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show, :update, :index]
+    resources :orders, only: [:show, :update, :index] #do
+    get "/orders/member/:member_id" => "orders#index_per_member", as: "orders_per_member"
+    # end
     resources :order_details, only: [:update]
   end
 

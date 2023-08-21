@@ -19,7 +19,12 @@
 
       <div class="d-flex">
         <h4 class="mr-1">¥<%= @item.price.to_s(:delimited) %></h4>
-        <p>(税込)</p>
+        <p class="mr-3">(税抜)</p>
+
+        <div>
+          <p class="mr-1">¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</p>
+        </div>
+
       </div>
 
       <% if member_signed_in? %>

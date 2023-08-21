@@ -34,6 +34,12 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def index_per_member
+    @member = Member.find(params[:member_id])
+    @orders = @member.orders.page(params[:page]).per(10)
+  end
+
+
   private
 
     def order_params

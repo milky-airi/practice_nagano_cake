@@ -47,7 +47,8 @@
       </table>
 
       <%= link_to "編集する", edit_admin_member_path, class: "btn btn-success" %>
-      <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-info" %>
+       <!--link_to "顧客別注文履歴一覧を見る", admin_orders_per_member_path(member_id: @member.id), class: "btn btn-info" %>-->
+      <%= link_to "この方の注文履歴一覧", admin_orders_per_member_path(member_id: @member.id), class: "btn btn-info" %>
 
     </div>
     <%= render 'admin/shared/footer.html.erb' %>

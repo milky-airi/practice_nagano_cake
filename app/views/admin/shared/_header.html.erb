@@ -1,7 +1,10 @@
 <div class="col-md-12">
   <header class="p-2">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <%= link_to "Nagano Cake", root_path, class: "navbar-brand text-dark" %>
+
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "nagano_cake_logo", size: "120x120" %>
+      <% end %>
 
       <% if admin_signed_in? %>
       <div>

@@ -2,9 +2,27 @@
   <div class="row">
     <%= render 'public/shared/header.html.erb' %>
 
+    <!--<div class="col-md-12 mb-5">-->
+    <!--  <div class="cart-title d-flex justify-content-between mb-5">-->
+    <!--    <h3>ショッピングカート</h3>-->
+
+
+        <% if @cart_items.empty? %>
+
+    <div class="col-md-12 mb-5">
+      <div class="cart-titlemb-5">
+        <h3>ショッピングカート</h3>
+        <h3>お客様のカートは空です</h3>
+      </div>
+    </div>
+
+        <% else %>
+
     <div class="col-md-12 mb-5">
       <div class="cart-title d-flex justify-content-between mb-5">
         <h3>ショッピングカート</h3>
+
+
         <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger" %>
       </div>
       <table class="table table-bordered">
@@ -23,14 +41,14 @@
               <%= image_tag cart_item.item.image, size: "100x80" %>
               <%= cart_item.item.name %>
             </td>
-            <td><%= cart_item.item.price %></td>
+            <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
             <td>
               <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
                 <%= f.select :quantity, [[1,1], [2,2], [3,3], [4,4], [5,5]]  %>
                 <%= f.submit "変更", class: "btn btn-success" %>
               <% end %>
             </td>
-            <td><%= (cart_item.item.price)*(cart_item.quantity).to_i %></td>
+            <td><%= (cart_item.item.add_tax_price)*(cart_item.quantity).to_i %></td>
             <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger"%></td>
           </tr>
         <% end %>
@@ -49,9 +67,9 @@
           <td>
               <% array = [] %>
               <% @cart_items.each do |cart_item| %>
-                <% array << cart_item.item.price*cart_item.quantity %>
+                <% array << cart_item.item.add_tax_price*cart_item.quantity %>
               <% end %>
-              ¥<%= array.sum %>
+              ¥<%= array.sum.to_s(:delimited) %>
             </td>
           </tr>
         </table>
@@ -62,6 +80,8 @@
         <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
       <% end %>
     </div>
+
+    <% end %>
 
     <%= render 'public/shared/footer.html.erb' %>
   </div>
